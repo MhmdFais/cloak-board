@@ -7,6 +7,7 @@ const homeRoute = require('./routes/home')
 const loginRoute = require('./routes/login')
 const registerRoute = require('./routes/register')
 const connectToDB = require('./models/db')
+const initializePassport = require('./middleware/auth')
 
 const app = express()
 
