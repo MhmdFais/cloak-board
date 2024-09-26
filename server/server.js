@@ -3,6 +3,9 @@ const express = require('express')
 const session = require("express-session")
 const passport = require("passport")
 const cors = require('cors');
+const homeRoute = require('./routes/home')
+const loginRoute = require('./routes/login')
+const registerRoute = require('./routes/register')
 
 const app = express()
 
@@ -26,6 +29,10 @@ app.use(session({
 }))
 
 app.use(passport.session())
+
+app.use('/', loginRoute)
+app.use('./register', registerRoute)
+app.use('./home', homeRoute)
 
 
 const port = process.env.PORT || 3000
