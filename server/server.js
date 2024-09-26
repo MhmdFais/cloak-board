@@ -6,8 +6,11 @@ const cors = require('cors');
 const homeRoute = require('./routes/home')
 const loginRoute = require('./routes/login')
 const registerRoute = require('./routes/register')
+const connectToDB = require('./models/db')
 
 const app = express()
+
+initializePassport(passport)
 
 const corsOptions = {
     origin: process.env.CORS_ORIGIN || 'http://localhost:5173', 
@@ -28,11 +31,25 @@ app.use(session({
     cookie: { secure: false }
 }))
 
+app.use(passport.initialize())
 app.use(passport.session())
+
+connectToDB();
 
 app.use('/', loginRoute)
 app.use('./register', registerRoute)
 app.use('./home', homeRoute)
+
+const checkAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/');
+};
+
+app.get('/', checkAuthenticated, (req, res) => {
+    res.redirect('/home');
+});
 
 
 const port = process.env.PORT || 3000
