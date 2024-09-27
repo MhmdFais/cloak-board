@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios  from "axios"
+import './login.css'
 
 function Login(){
     const [email, setEmail] = useState('')
@@ -17,8 +18,10 @@ function Login(){
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 console.log('Login failed: ', error.response.data.message)
+                alert('Login failed: ', error.response.data.message)
             } else {
-                console.log('Error: ', error.message);
+                console.log('Error: ', error.message)
+                alert('Error: ', error.message)
             }
         }
     };
