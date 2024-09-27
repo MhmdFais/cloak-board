@@ -38,19 +38,19 @@ app.use(passport.session())
 connectToDB();
 
 app.use('/', loginRoute)
-app.use('./register', registerRoute)
-app.use('./home', homeRoute)
+app.use('/register', registerRoute)
+app.use('/home', homeRoute)
 
-const checkAuthenticated = (req, res, next) => {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/');
-};
+// const checkAuthenticated = (req, res, next) => {
+//     if (req.isAuthenticated()) {
+//         return next();
+//     }
+//     res.redirect('/login');
+// };
 
-app.get('/', checkAuthenticated, (req, res) => {
-    res.redirect('/home');
-});
+// app.get('/', checkAuthenticated, (req, res) => {
+//     res.redirect('/home');
+// });
 
 
 const port = process.env.PORT || 3000

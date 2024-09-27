@@ -8,17 +8,21 @@ function Login(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try{
+        try {
             const res = await axios.post('http://localhost:3000/', {
                 email,
                 password
-            })
-            console.log(res)
+            });
+            console.log('Login successful', res.data)
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                console.log('Login failed: ', error.response.data.message)
+            } else {
+                console.log('Error: ', error.message);
+            }
         }
-        catch(error){
-            console.log(error)
-        }
-    }
+    };
+    
 
     return(
         <div className="container">
@@ -34,6 +38,7 @@ function Login(){
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
+            <a href="/register">Register</a>
         </div>
     )
 }
