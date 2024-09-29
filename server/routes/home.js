@@ -1,5 +1,6 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
+const Message = require('../controller/message')
 
 router.get('/', async (req, res) => {
     if (req.isAuthenticated()) {
