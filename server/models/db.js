@@ -1,9 +1,7 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
 
-let dbPass = process.env.DB_PASS
-
-let url = `mongodb+srv://mofam534:${dbPass}.wj6ie.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+let url = `mongodb+srv://mofam534:YyjndPIFHLXtQGrJ@cluster0.wj6ie.mongodb.net/`
 
 const connectToDB = async () => {
     try{

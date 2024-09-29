@@ -26,7 +26,7 @@ router.post('/logout', (req, res, next) => {
     });
 })
 
-router.post('/message', ensureAuthenticated, async (req, res) => {
+router.post('/message', async (req, res) => {
     const { message } = req.body;
 
     if (!message) {
