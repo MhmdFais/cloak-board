@@ -31,7 +31,7 @@ function Home(){
     const handleMessageSubmit = async (e) => {
         e.preventDefault();
         try {
-          const res = await axios.post('http://localhost:3000/home/', { message })
+          const res = await axios.post('http://localhost:3000/home/message', { message })
           setMessages([...messages, res.data])
           setMessage("")
         } catch (error) {
